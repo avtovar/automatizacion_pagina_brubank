@@ -1,46 +1,45 @@
-# Automatización Brubank (Python) 🐍
+# Automatización de Pruebas de Regresión - Brubank (Python)
 
-Este proyecto es el equivalente en **Python** de la suite de pruebas de Brubank, utilizando **Playwright** y **Pytest**.
+Este proyecto realiza pruebas de regresión automatizadas sobre el sitio web de Brubank utilizando **Python**, **Pytest** y **Playwright**.
 
-## 📋 Requisitos
-- **Python 3.10+**
-- **Pip** (Gestor de paquetes de Python)
+## 📋 Requisitos Previos
 
-## 🚀 Instalación
+- Python 3.8 o superior.
+- Pip (gestor de paquetes de Python).
 
-1. Navega a la carpeta del proyecto:
-   ```bash
-   cd automatizacion_pagina_brubank
-   ```
+## 🚀 Instalación Local
 
-2. Instala las dependencias:
-   ```bash
-   pip install -r requirements.txt
-   ```
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone <url-del-repositorio>
+    cd automatizacion_pagina_brubank
+    ```
 
-3. Instala los navegadores de Playwright:
-   ```bash
-   playwright install
-   ```
+2.  **Instalar dependencias:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-## 🏃 Cómo Correr los Tests
+3.  **Instalar los navegadores de Playwright:**
+    ```bash
+    playwright install chromium
+    ```
 
-### Ejecución Estándar (Headless)
-```bash
-pytest
-```
+## 🛠️ Ejecución de Pruebas
 
-### Ejecución con Navegador Visible (Headed)
+Para correr las pruebas de manera local y ver el navegador en vivo:
+
 ```bash
 pytest --headed
 ```
 
-### Ejecución en un navegador específico (ej. Chrome)
-```bash
-pytest --browser chromium --headed
-```
+- `--headed`: Abre el navegador para que puedas ver las acciones en vivo.
+- Las pruebas generarán automáticamente un reporte HTML llamado `report.html` en la raíz del proyecto.
 
-## 🏗️ Estructura
-- `pages/`: Contiene el Page Object Model (`home_page.py`).
-- `tests/`: Contiene los archivos de prueba (`test_regression.py`).
-- `requirements.txt`: Lista de dependencias necesarias.
+## 📊 Reportes
+
+Al finalizar la ejecución, abre el archivo `report.html` en cualquier navegador para ver los resultados detallados de cada prueba.
+
+## 🤖 Integración Continua (CI)
+
+Este proyecto incluye un workflow de GitHub Actions que ejecuta las pruebas automáticamente en cada push o pull request. Los resultados y reportes se suben como artefactos de la ejecución.
