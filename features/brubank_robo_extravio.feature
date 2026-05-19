@@ -11,10 +11,10 @@ Feature: Robo y Extravío - Brubank Support
   Scenario: Buscar información de reporte por robo o extravío
     When el usuario busca el término "Robo y extravío"
     Then el sistema debe mostrar resultados relacionados con "Robo y extravío"
-    And debe ser visible el artículo principal sobre "robo o extravío"
+    And debe ser visible el artículo principal sobre "Robo y extravío"
 
   @navegacion @seguridad
   Scenario: Acceder directamente desde la categoría Seguridad
-    When el usuario selecciona la categoría "Seguridad"
-    Then debe visualizarse la opción de "Denunciar robo o extravío"
+    When el usuario selecciona la categoría "Ayuda"
+    Then debe visualizarse la opción de "Robo y extravío"
     And el contenido debe explicar cómo bloquear la tarjeta desde la app

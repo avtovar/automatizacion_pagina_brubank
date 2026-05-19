@@ -25,7 +25,7 @@ def test_personas_menu_items(home_page: HomePage):
 
 def test_footer(home_page: HomePage):
     """Acción: Valida el footer legal."""
-    home_page.verify_footer_legal_link("Términos")
+    home_page.verify_footer_legal_link("Información importante")
 
 @pytest.fixture(scope="session", autouse=True)
 def summary():

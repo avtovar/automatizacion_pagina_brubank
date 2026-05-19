@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+report.html
+qa-report.html
+*validation_report*.html
+reporte_*.html
+failure_*.png
+test-results/
+playwright-report/

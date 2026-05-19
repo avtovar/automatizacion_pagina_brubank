@@ -1,45 +1,180 @@
-# Automatización de Pruebas de Regresión - Brubank (Python)
+# Automatizacion de Pruebas de Regresion - Brubank
 
-Este proyecto realiza pruebas de regresión automatizadas sobre el sitio web de Brubank utilizando **Python**, **Pytest** y **Playwright**.
+Suite de pruebas automatizadas sobre el sitio web de Brubank usando Python, Pytest, Pytest-BDD y Playwright.
 
-## 📋 Requisitos Previos
+La suite cubre:
+
+- Home principal de Brubank.
+- Navegacion superior y menu de Personas.
+- Secciones de productos y beneficios.
+- Footer, enlaces legales y redes sociales.
+- Centro de Ayuda y FAQ.
+- Seccion Empresas.
+- Flujo de Robo y Extravío.
+
+## Requisitos
 
 - Python 3.8 o superior.
-- Pip (gestor de paquetes de Python).
+- Pip.
+- Chromium instalado por Playwright.
 
-## 🚀 Instalación Local
+## Instalacion
 
-1.  **Clonar el repositorio:**
-    ```bash
-    git clone <url-del-repositorio>
-    cd automatizacion_pagina_brubank
-    ```
+Desde la raiz del proyecto:
 
-2.  **Instalar dependencias:**
-    ```bash
-    pip install -r requirements.txt
-    ```
+```powershell
+pip install -r requirements.txt
+playwright install chromium
+```
 
-3.  **Instalar los navegadores de Playwright:**
-    ```bash
-    playwright install chromium
-    ```
+Opcionalmente, si queres usar un entorno virtual:
 
-## 🛠️ Ejecución de Pruebas
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+playwright install chromium
+```
 
-Para correr las pruebas de manera local y ver el navegador en vivo:
+## Ejecutar Todos Los Casos
 
-```bash
+Ejecuta toda la suite en modo headless:
+
+```powershell
+pytest
+```
+
+Ejecuta toda la suite viendo el navegador:
+
+```powershell
 pytest --headed
 ```
 
-- `--headed`: Abre el navegador para que puedas ver las acciones en vivo.
-- Las pruebas generarán automáticamente un reporte HTML llamado `report.html` en la raíz del proyecto.
+Ejecuta la suite con salida resumida:
 
-## 📊 Reportes
+```powershell
+pytest -q
+```
 
-Al finalizar la ejecución, abre el archivo `report.html` en cualquier navegador para ver los resultados detallados de cada prueba.
+## Ejecutar Por Modulo
 
-## 🤖 Integración Continua (CI)
+Smoke/regresion basica:
 
-Este proyecto incluye un workflow de GitHub Actions que ejecuta las pruebas automáticamente en cada push o pull request. Los resultados y reportes se suben como artefactos de la ejecución.
+```powershell
+pytest tests\test_regression.py
+```
+
+Suite BDD principal:
+
+```powershell
+pytest tests\test_brubank_bdd.py
+```
+
+Centro de Ayuda:
+
+```powershell
+pytest tests\test_ayuda_bdd.py
+```
+
+Empresas:
+
+```powershell
+pytest tests\test_empresas_bdd.py
+```
+
+FAQ:
+
+```powershell
+pytest tests\test_faq_bdd.py
+```
+
+Robo y extravio:
+
+```powershell
+pytest tests\test_robo_extravio_bdd.py
+```
+
+## Ejecutar Por Tags
+
+Los escenarios BDD tienen tags registrados en `pytest.ini`.
+
+Ejemplos:
+
+```powershell
+pytest -m regression
+pytest -m empresas
+pytest -m ayuda
+pytest -m faq
+pytest -m seguridad
+pytest -m critical
+```
+
+## Ejecutar Un Caso Puntual
+
+Para listar casos disponibles:
+
+```powershell
+pytest --collect-only -q
+```
+
+Para ejecutar un test exacto:
+
+```powershell
+pytest tests\test_brubank_bdd.py::test_verificar_identidad_de_marca_y_mensaje_principal_en_la_sección_hero
+```
+
+Para cortar en el primer fallo:
+
+```powershell
+pytest -x
+```
+
+Para mostrar logs y prints:
+
+```powershell
+pytest -s
+```
+
+## Reportes
+
+La configuracion de `pytest.ini` genera automaticamente:
+
+```text
+report.html
+```
+
+Para generar otro reporte manualmente:
+
+```powershell
+pytest --html=qa-report.html --self-contained-html
+```
+
+## CI
+
+El workflow de GitHub Actions se encuentra en:
+
+```text
+.github/workflows/playwright.yml
+```
+
+En cada push o pull request a `main` o `master`, instala dependencias, instala Chromium y ejecuta:
+
+```powershell
+pytest --html=qa-report.html --self-contained-html
+```
+
+El reporte `qa-report.html` se sube como artefacto del workflow.
+
+## Ultima Validacion Local
+
+La suite completa fue validada localmente con:
+
+```powershell
+pytest -q
+```
+
+Resultado:
+
+```text
+64 passed
+```

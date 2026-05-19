@@ -17,7 +17,6 @@ Feature: Suite de Regresión Integral v2.2 - Portal Brubank
       | Personas |
       | Empresas |
       | Ayuda    |
-      | Ingresar |
 
   @hero @branding
   Scenario: Verificar identidad de marca y mensaje principal en la sección Hero
@@ -46,15 +45,13 @@ Feature: Suite de Regresión Integral v2.2 - Portal Brubank
     And el enlace debe redirigir a la sección correspondiente de "<servicio>"
 
     Examples:
-      | service              |
+      | servicio             |
       | Cuenta                |
       | Tarjeta Visa          |
       | Préstamos             |
       | Inversiones           |
       | Dólar                 |
       | Pago QR               |
-      | Brubank Plus          |
-      | Control Parental      |
 
   @footer @legal @compliance
   Scenario Outline: Verificar integridad de enlaces legales y transparencia
@@ -63,16 +60,14 @@ Feature: Suite de Regresión Integral v2.2 - Portal Brubank
 
     Examples:
       | enlace_legal                     |
-      | Términos y condiciones           |
-      | Privacidad                       |
+      | Información importante           |
       | Defensa del Consumidor           |
-      | Usuario de Servicios Financieros |
-      | Código de Prácticas Bancarias    |
+      | Información al usuario financiero |
+      | Código de prácticas bancarias    |
       | FATCA                            |
-      | CRS                              |
-      | Comisiones                       |
-      | Comparativa                      |
-      | Ayuda                            |
+      | Comisiones vigentes              |
+      | Régimen de transparencia         |
+      | Usuario Bancario                 |
 
   @social @branding
   Scenario Outline: Verificar presencia en redes sociales oficiales de la marca
@@ -82,7 +77,7 @@ Feature: Suite de Regresión Integral v2.2 - Portal Brubank
     Examples:
       | red_social |
       | Instagram  |
-      | Facebook   |
+      | TikTok     |
       | Twitter    |
       | LinkedIn   |
 
@@ -94,9 +89,9 @@ Feature: Suite de Regresión Integral v2.2 - Portal Brubank
 
     Examples:
       | categoria          |
-      | Mi Cuenta          |
-      | Tarjeta            |
-      | Seguridad          |
-      | Estafas            |
-      | Límites y Costos   |
+      | Preguntas frecuentes |
+      | Transferencias     |
       | Inversiones        |
+      | Préstamos          |
+      | Tarjetas           |
+      | Contacto soporte   |

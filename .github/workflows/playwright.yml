@@ -29,9 +29,8 @@ jobs:
     - name: Install Playwright Browsers
       run: python -m playwright install chromium --with-deps
 
-    - name: Run BDD Tests
-      run: pytest tests/test_brubank_bdd.py --html=qa-report.html --self-contained-html
-      continue-on-error: true
+    - name: Run Regression Suite
+      run: pytest --html=qa-report.html --self-contained-html
 
     - name: Upload QA Report
       uses: actions/upload-artifact@v4

@@ -9,7 +9,7 @@ Feature: Suite de Regresión - Sección Empresas Brubank
 
   @hero @branding
   Scenario: Verificar propuesta de valor principal para empresas
-    Then el mensaje principal debe decir "El banco digital para tu empresa"
+    Then el mensaje principal debe decir "Abrí tu cuenta empresa gratis"
     And debe visualizarse el botón para "Abrir cuenta" de empresa
     But no deben visualizarse secciones destinadas exclusivamente a individuos
 
@@ -38,6 +38,6 @@ Feature: Suite de Regresión - Sección Empresas Brubank
     
     Examples:
       | enlace                           |
-      | Términos y condiciones empresas  |
-      | Comisiones empresas              |
-      | Preguntas frecuentes empresas    |
+      | Comisiones Vigentes Empresas     |
+      | Información importante           |
+      | Usuario Bancario                 |

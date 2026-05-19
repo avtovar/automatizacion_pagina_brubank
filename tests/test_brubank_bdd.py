@@ -1,6 +1,6 @@
 import pytest
 from pytest_bdd import scenarios, given, when, then, parsers
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 from pages.home_page import HomePage
 
 # Load scenarios using English keywords but Spanish step text
@@ -24,7 +24,7 @@ def step_verify_nav_menu_option(home_page, opcion):
 
 @then('la opción debe estar habilitada para su interacción')
 def step_verify_option_enabled(home_page):
-    pass
+    home_page.verify_last_nav_option_enabled()
 
 @then(parsers.parse('el mensaje principal debe comunicar "{texto}"'))
 def step_verify_hero_message(home_page, texto):
@@ -36,7 +36,7 @@ def step_verify_app_links(home_page):
 
 @then('no deben visualizarse mensajes de error de carga en la sección')
 def step_verify_no_errors(home_page):
-    pass
+    home_page.verify_no_loading_errors()
 
 @then(parsers.parse('debe visualizarse la sección informativa de "{producto}"'))
 def step_verify_product_section(home_page, producto):
@@ -44,7 +44,7 @@ def step_verify_product_section(home_page, producto):
 
 @then('la sección debe contener información relevante para el usuario')
 def step_verify_section_info(home_page):
-    pass
+    home_page.verify_last_section_has_relevant_text()
 
 @when('el usuario explora el menú "Personas"')
 def step_explore_personas_menu(home_page):
@@ -55,8 +55,8 @@ def step_verify_persona_service(home_page, servicio):
     home_page.verify_persona_service(servicio)
 
 @then(parsers.parse('el enlace debe redirigir a la sección correspondiente de "{servicio}"'))
-def step_verify_service_redirect(home_page, service):
-    pass
+def step_verify_service_redirect(home_page, servicio):
+    home_page.verify_last_link_has_destination()
 
 @then(parsers.parse('el pie de página debe contener el enlace legal "{enlace_legal}"'))
 def step_verify_legal_link(home_page, enlace_legal):
@@ -64,7 +64,7 @@ def step_verify_legal_link(home_page, enlace_legal):
 
 @then('al hacer clic debe mostrar la información de cumplimiento vigente')
 def step_verify_compliance_info(home_page):
-    pass
+    home_page.verify_last_link_has_destination()
 
 @then(parsers.parse('debe estar visible el acceso a la red social "{red_social}"'))
 def step_verify_social_network(home_page, red_social):
@@ -72,7 +72,7 @@ def step_verify_social_network(home_page, red_social):
 
 @then(parsers.parse('el icono debe representar fielmente la identidad de "{red_social}"'))
 def step_verify_social_icon(home_page, red_social):
-    pass
+    expect(home_page.last_verified_locator).to_be_visible(timeout=10000)
 
 @when('el usuario accede al Centro de Ayuda')
 def step_access_help_center(home_page):
@@ -84,4 +84,4 @@ def step_verify_support_category(home_page, categoria):
 
 @then(parsers.parse('debe permitir la navegación hacia las preguntas frecuentes de "{categoria}"'))
 def step_verify_faq_navigation(home_page, categoria):
-    pass
+    expect(home_page.last_verified_locator).to_be_visible(timeout=10000)

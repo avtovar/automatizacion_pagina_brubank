@@ -1,6 +1,6 @@
 import pytest
 from pytest_bdd import scenarios, given, when, then, parsers
-from playwright.sync_api import Page
+from playwright.sync_api import Page, expect
 from pages.ayuda_page import AyudaPage
 
 # Cargar escenarios para el Centro de Ayuda
@@ -24,11 +24,11 @@ def step_search_term(ayuda_page, termino):
 
 @then(parsers.parse('el sistema debe mostrar resultados relacionados con "{termino}"'))
 def step_verify_search_results(ayuda_page, termino):
-    ayuda_page.verify_search_results_visible()
+    ayuda_page.verify_search_results_visible(termino)
 
 @then('los resultados deben ser relevantes para la consulta')
 def step_verify_relevance(ayuda_page):
-    pass
+    expect(ayuda_page.page.locator("body")).not_to_be_empty(timeout=10000)
 
 @when(parsers.parse('el usuario selecciona la categoría "{categoria}"'))
 def step_select_category(ayuda_page, categoria):
@@ -40,12 +40,11 @@ def step_verify_category_articles(ayuda_page, categoria):
 
 @then('la navegación debe ser fluida dentro de la sección')
 def step_verify_fluid_navigation(ayuda_page):
-    pass
+    expect(ayuda_page.page.locator("body")).to_be_visible(timeout=10000)
 
 @when('el usuario accede a un artículo de soporte')
 def step_access_article(ayuda_page):
-    # Seleccionamos el primer resultado o artículo visible
-    ayuda_page.page.locator(".faq-item, .article-link").first.click()
+    ayuda_page.page.get_by_text("¿Qué necesito para abrir una cuenta", exact=False).first.click()
 
 @then('el contenido completo del artículo debe ser legible')
 def step_verify_article_legibility(ayuda_page):
@@ -53,5 +52,4 @@ def step_verify_article_legibility(ayuda_page):
 
 @then('debe permitir volver a la página de categorías principal')
 def step_verify_back_nav(ayuda_page):
-    # Validamos que el botón volver existe (no hacemos click para no romper flujo si hay más pasos)
-    expect(ayuda_page.back_button).to_be_attached()
+    ayuda_page.verify_back_navigation_available()

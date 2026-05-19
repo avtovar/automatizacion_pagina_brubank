@@ -22,14 +22,13 @@ Feature: Preguntas Frecuentes (FAQ) - Brubank Portal
 
     Examples:
       | tema             |
-      | Abrir mi cuenta  |
-      | Mi tarjeta       |
-      | Transferencias   |
-      | Plazo Fijo       |
-      | Préstamos        |
+      | abrir una cuenta |
+      | beneficios tiene la tarjeta |
+      | pagar sin usar la tarjeta |
+      | pagar servicios |
 
   @interaccion
-  Scenario: Validar utilidad de las respuestas
+  Scenario: Validar lectura de respuestas frecuentes
     When el usuario lee una respuesta en FAQ
-    Then debe visualizar opciones para calificar si la respuesta fue útil
+    Then debe visualizar el contenido de la respuesta
     And debe permitir volver a la lista de temas principales

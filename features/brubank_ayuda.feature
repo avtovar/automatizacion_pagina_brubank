@@ -17,7 +17,7 @@ Feature: Suite de Regresión - Centro de Ayuda Brubank
       | termino    |
       | Tarjeta    |
       | Clave      |
-      | Transferir |
+      | Transferencias |
 
   @categorias @navegacion
   Scenario Outline: Explorar categorías principales de ayuda
@@ -27,9 +27,9 @@ Feature: Suite de Regresión - Centro de Ayuda Brubank
 
     Examples:
       | categoria   |
-      | Mi Cuenta   |
-      | Tarjeta     |
-      | Seguridad   |
+      | Transferencias |
+      | Tarjetas    |
+      | Préstamos   |
       | Inversiones |
 
   @articulos @funcional

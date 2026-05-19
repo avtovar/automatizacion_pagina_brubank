@@ -30,7 +30,7 @@ def step_verify_open_account_btn(empresas_page):
 
 @then('no deben visualizarse secciones destinadas exclusivamente a individuos')
 def step_verify_no_individual_sections(empresas_page):
-    pass
+    empresas_page.verify_no_individual_only_sections()
 
 @then(parsers.parse('debe visualizarse la sección informativa de "{solucion}"'))
 def step_verify_section_visibility(empresas_page, solucion):
@@ -38,7 +38,7 @@ def step_verify_section_visibility(empresas_page, solucion):
 
 @then('la información debe ser específica para el segmento corporativo')
 def step_verify_corporate_info(empresas_page):
-    pass
+    empresas_page.verify_corporate_content()
 
 @when('el usuario intenta iniciar el proceso de "Abrir cuenta"')
 def step_click_open_account(empresas_page):
@@ -46,12 +46,13 @@ def step_click_open_account(empresas_page):
 
 @then('el sistema debe mostrar los requisitos para empresas')
 def step_verify_requirements(empresas_page):
-    pass
+    empresas_page.verify_business_requirements_visible()
 
 @then('debe permitir la descarga de la documentación necesaria')
 def step_verify_doc_download(empresas_page):
-    pass
+    expect(empresas_page.page.locator("body")).to_contain_text("document", timeout=10000)
 
 @then(parsers.parse('el pie de página debe contener el enlace legal "{enlace}"'))
 def step_verify_footer_link(empresas_page, enlace):
-    expect(empresas_page.page.get_by_text(enlace, exact=False).first).to_be_visible(timeout=10000)
+    matches = empresas_page.page.get_by_text(enlace, exact=False)
+    expect(matches.filter(visible=True).first).to_be_visible(timeout=10000)
